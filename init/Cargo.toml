@@ -5,4 +5,4 @@ edition = "2024"
 
 [dependencies]
 bincode.workspace = true
-bitflags.workspace = true
+serde.workspace = true

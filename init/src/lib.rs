@@ -1,14 +1,22 @@
-use std::{collections::HashMap, path::PathBuf};
+use std::path::PathBuf;
 
-use bincode::{Decode, Encode};
+use serde::{Deserialize, Serialize};
 
-#[derive(Encode, Decode)]
+#[derive(Serialize, Deserialize)]
 pub struct Config {
     pub path: PathBuf,
-    pub layers: HashMap<String, PathBuf>,
-    pub binds: HashMap<PathBuf, PathBuf>,
+    pub layers: Vec<(String, PathBuf)>,
+    pub binds: Vec<(PathBuf, PathBuf)>,
     pub mount_proc: bool,
     pub mount_tmp: bool,
     pub mount_sys: bool,
     pub mount_dev: bool,
+    pub command: Command,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Command {
+    pub cmd: String,
+    pub args: Vec<String>,
+    pub env: Vec<(String, String)>,
 }
