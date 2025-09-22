@@ -1,0 +1,24 @@
+[package]
+name = "micropod"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+micropod-init = { path = "init", artifact = "bin", lib = true }
+
+bincode.workspace = true
+bitflags.workspace = true
+miette.workspace = true
+nix.workspace = true
+thiserror.workspace = true
+
+[workspace]
+resolver = "3"
+members = [".", "init"]
+
+[workspace.dependencies]
+bincode = "2.0.1"
+bitflags = "2.9.3"
+miette = { version = "7.6.0" }
+nix = { version = "0.30.1", features = ["user", "process", "mount", "fs", "hostname", "sched"] }
+thiserror = "2.0.14"
